@@ -55,10 +55,20 @@ class Player extends Sprite {
   }
   enterMap2() {
     if (this.onDoor()) {
+      console.log('hai')
       door.drawAnimate(false);
     } else {
       if (door.currentFrame > 0) {
         door.animateBackward(false);
+      }
+    }
+  }
+  enterMap3(){
+    if (this.onDoor2()) {
+      door2.drawAnimate(false);
+    } else {
+      if (door2.currentFrame > 0) {
+        door2.animateBackward(false);
       }
     }
   }
@@ -74,8 +84,16 @@ class Player extends Sprite {
       return false;
     }
   }
-  enteringMap2() {
-    if (door.currentFrame >= door.frameRate) {
+  onDoor2(){
+    if (
+      player.position.x >= 0 &&
+      player.position.y >= 40 &&
+      player.position.x <= 130 &&
+      player.position.y <= 260
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
   movement() {

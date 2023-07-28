@@ -44,10 +44,14 @@ botButton.addEventListener("touchend", (e) => {
 
 space.addEventListener("touchstart", (e) => {
   e.preventDefault();
-  if (player.sides.bottom >= canvas.height - ground) {
-    keys.jump.pressed = true;
+  if (!state.climbStair) {
+    if (player.sides.bottom > canvas.height - ground) {
+      keys.jump.pressed = true;
+    } else {
+      keys.jump.pressed = false;
+    }
   } else {
-    keys.jump.pressed = false;
+    keys.jump.pressed = true;
   }
 });
 space.addEventListener("touchend", (e) => {
@@ -59,6 +63,10 @@ enter.addEventListener("touchstart", (e) => {
   if (state.map === 1) {
     if (player.onDoor()) {
       state.map = 2;
+    }
+  } else if (state.map === 2) {
+    if (player.onDoor2()) {
+      state.map = 3;
     }
   }
 });
@@ -79,21 +87,27 @@ window.addEventListener("keydown", (event) => {
       keys.right.pressed = true;
       break;
     case " ":
+      console.log(player.position.x + player.width);
+      console.log("b: " + (player.position.x + player.width));
       if (!state.climbStair) {
         if (player.sides.bottom > canvas.height - ground) {
           keys.jump.pressed = true;
         } else {
           keys.jump.pressed = false;
         }
-      }else{
+      } else {
         keys.jump.pressed = true;
       }
 
       break;
     case "Enter":
       if (state.map === 1) {
-        if (player.onDoor) {
+        if (player.onDoor()) {
           state.map = 2;
+        }
+      } else if (state.map === 2) {
+        if (player.onDoor2()) {
+          state.map = 3;
         }
       }
 

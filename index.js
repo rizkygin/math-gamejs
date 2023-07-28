@@ -29,6 +29,16 @@ const door = new Sprite({
   frameBuffer: 10,
 });
 
+const door2 = new Sprite({
+  position: {
+    x: -11,
+    y: 13,
+  },
+  imageSrc: "./images/env/door.png",
+  frameRate: 8,
+  frameBuffer: 10,
+});
+
 const button = new Button();
 button.top();
 
@@ -52,7 +62,7 @@ const keys = {
 
 function animate() {
   window.requestAnimationFrame(animate);
-
+  console.log(state.hp )
   switch (state.map) {
     case 1:
       map1.draw();
@@ -61,6 +71,8 @@ function animate() {
     case 2:
       map2.draw();
       map2.collisionStair();
+      map2.healthMap2();
+      player.enterMap3();
       break;
     case 3:
       map3.draw();
