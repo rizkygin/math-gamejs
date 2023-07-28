@@ -61,7 +61,7 @@ enter.addEventListener("touchstart", (e) => {
       state.map = 2;
     }
   }
-})
+});
 
 window.addEventListener("keydown", (event) => {
   // console.log(event.key);
@@ -79,14 +79,16 @@ window.addEventListener("keydown", (event) => {
       keys.right.pressed = true;
       break;
     case " ":
-      if (player.sides.bottom > canvas.height - ground) {
-        console.log("bottom :" + player.sides.bottom);
-        console.log("ground :" + (canvas.height - ground));
-
+      if (!state.climbStair) {
+        if (player.sides.bottom > canvas.height - ground) {
+          keys.jump.pressed = true;
+        } else {
+          keys.jump.pressed = false;
+        }
+      }else{
         keys.jump.pressed = true;
-      } else {
-        keys.jump.pressed = false;
       }
+
       break;
     case "Enter":
       if (state.map === 1) {

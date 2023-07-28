@@ -8,9 +8,10 @@ canvas.height = 64 * 9; //576
 const ground = 110;
 
 const state = {
-  map: 1, 
+  map: 2, 
   hp: 100,
   element: "fire",
+  climbStair: false,
 };
 
 const player = new Player({
@@ -56,10 +57,10 @@ function animate() {
     case 1:
       map1.draw();
       player.enterMap2();
- 
       break;
     case 2:
       map2.draw();
+      map2.collisionStair();
       break;
     case 3:
       map3.draw();

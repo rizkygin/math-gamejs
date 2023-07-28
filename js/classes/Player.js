@@ -20,26 +20,33 @@ class Player extends Sprite {
     this.position.y += this.velocity.y;
     this.updateSides();
 
-    if (this.sides.top <= 0) {
-      this.position.y = 0;
-      this.velocity.y = 1;
-      keys.jump.pressed = false;
-      keys.up.pressed = false;
-    } else {
-      if (this.sides.bottom < canvas.height - ground) {
-        this.velocity.y += this.gravity;
+    if (!state.climbStair) {
+      //gravity ground
+      if (this.sides.top <= 0) {
+        this.position.y = 0;
+        this.velocity.y = 1;
+        keys.jump.pressed = false;
+        keys.up.pressed = false;
       } else {
-        this.velocity.y = 0;
-        this.gravity = 1;
+        if (this.sides.bottom < canvas.height - ground) {
+          this.velocity.y += this.gravity;
+        } else {
+          this.velocity.y = 0;
+          this.gravity = 1;
+        }
       }
-    }
-    //bottom ground
-    if (this.sides.bottom > canvas.height) {
-      this.position.y = canvas.height - this.height;
-    }
+      //bottom ground
+      if (this.sides.bottom > canvas.height) {
+        this.position.y = canvas.height - this.height;
+      }
+    } 
+    //biar ga tenggelam ke kanan kiri
     if (this.position.x <= 0) {
       keys.left.pressed = false;
       this.position.x = 0;
+    }
+    if (this.position.x + this.width >= canvas.width) {
+      this.position.x = canvas.width - this.width;
     }
   }
   updateSides() {
@@ -48,7 +55,7 @@ class Player extends Sprite {
   }
   enterMap2() {
     if (this.onDoor()) {
-      door.drawAnimate(false); 
+      door.drawAnimate(false);
     } else {
       if (door.currentFrame > 0) {
         door.animateBackward(false);
