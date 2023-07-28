@@ -8,7 +8,7 @@ canvas.height = 64 * 9; //576
 const ground = 110;
 
 const state = {
-  map: 2, 
+  map: 1, 
   hp: 100,
   element: "fire",
   climbStair: false,
