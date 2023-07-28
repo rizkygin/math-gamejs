@@ -6,55 +6,53 @@ const botButton = document.getElementById("bot");
 const space = document.getElementById("space");
 const enter = document.getElementById("enter");
 
-leftButton.addEventListener("mousedown", (e) => {
+leftButton.addEventListener("touchstart", (e) => {
   keys.left.pressed = true;
 });
-leftButton.addEventListener("mouseup", (e) => {
+leftButton.addEventListener("touchend", (e) => {
   keys.left.pressed = false;
 });
 
-rightButton.addEventListener("mousedown", (e) => {
+rightButton.addEventListener("touchstart", (e) => {
   keys.right.pressed = true;
 });
-rightButton.addEventListener("mouseup", (e) => {
+rightButton.addEventListener("touchend", (e) => {
   keys.right.pressed = false;
 });
 
-topButton.addEventListener("mousedown", (e) => {
+topButton.addEventListener("touchstart", (e) => {
   keys.up.pressed = true;
 });
-topButton.addEventListener("mouseup", (e) => {
+topButton.addEventListener("touchend", (e) => {
   keys.up.pressed = false;
 });
 
-botButton.addEventListener("mousedown", (e) => {
+botButton.addEventListener("touchstart", (e) => {
   keys.down.pressed = true;
 });
-botButton.addEventListener("mouseup", (e) => {
+botButton.addEventListener("touchend", (e) => {
   keys.down.pressed = false;
 });
 
-space.addEventListener("mousedown", (e) => {
+space.addEventListener("touchstart", (e) => {
   if (player.sides.bottom >= canvas.height - ground) {
     keys.jump.pressed = true;
   } else {
     keys.jump.pressed = false;
   }
 });
-space.addEventListener("mouseup", (e) => {
+space.addEventListener("touchstart", (e) => {
   keys.jump.pressed = false;
 });
 
-enter.addEventListener("mousedown", (e) => {
+enter.addEventListener("touchend", (e) => {
   if (state.map === 1) {
     if (player.onDoor) {
       state.map = 2;
     }
   }
 });
-enter.addEventListener("mouseup", (e) => {
-  
-});
+enter.addEventListener("mouseup", (e) => {});
 
 window.addEventListener("keydown", (event) => {
   // console.log(event.key);
