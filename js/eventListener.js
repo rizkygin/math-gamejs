@@ -7,52 +7,61 @@ const space = document.getElementById("space");
 const enter = document.getElementById("enter");
 
 leftButton.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   keys.left.pressed = true;
 });
 leftButton.addEventListener("touchend", (e) => {
+  e.preventDefault();
   keys.left.pressed = false;
 });
 
 rightButton.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   keys.right.pressed = true;
 });
 rightButton.addEventListener("touchend", (e) => {
+  e.preventDefault();
   keys.right.pressed = false;
 });
 
 topButton.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   keys.up.pressed = true;
 });
 topButton.addEventListener("touchend", (e) => {
+  e.preventDefault();
   keys.up.pressed = false;
 });
 
 botButton.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   keys.down.pressed = true;
 });
 botButton.addEventListener("touchend", (e) => {
+  e.preventDefault();
   keys.down.pressed = false;
 });
 
 space.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   if (player.sides.bottom >= canvas.height - ground) {
     keys.jump.pressed = true;
   } else {
     keys.jump.pressed = false;
   }
 });
-space.addEventListener("touchstart", (e) => {
+space.addEventListener("touchend", (e) => {
   keys.jump.pressed = false;
 });
 
-enter.addEventListener("touchend", (e) => {
+enter.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   if (state.map === 1) {
-    if (player.onDoor) {
+    if (player.onDoor()) {
       state.map = 2;
     }
   }
-});
-enter.addEventListener("mouseup", (e) => {});
+})
 
 window.addEventListener("keydown", (event) => {
   // console.log(event.key);
