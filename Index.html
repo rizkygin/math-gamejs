@@ -6,13 +6,43 @@
     <title>Document</title>
     <style>
       body {
-        background-color: black;
+        background-color: grey;
+      }
+      .navi {
+        width: 332px;
+        height: 212px;
+      }
+      .bottomButton {
+        display: flex;
+        justify-content: space-between;
       }
     </style>
-    
   </head>
   <body>
     <canvas></canvas>
+    <div style="display: flex; align-items: flex-end;">
+      <div class="navi">
+        <div class="topButton">
+          <div style="background-color: grey; text-align: center">
+            <img id="top" src="./images/button/top button.png" />
+          </div>
+        </div>
+        <div class="bottomButton">
+          <div id="left" ><img src="./images/button/left button.png" /></div>
+          <div id="bot" ><img src="./images/button/bottom.png" /></div>
+          <div><img id="right" src="./images/button/ritgh button.png" /></div>
+        </div>
+      </div>
+
+      <div style="margin-left: 50px;">
+        <div id="space" ><img src="./images/button/spaceBar.png" /></div>
+      </div>
+      <div style="margin-left: 50px;">
+        <div id="enter" ><img src="./images/button/enter.png" /></div>
+      </div>
+    </div>
+
+    <script src="./js/buttons/buttons.js"></script>
     <script src="./js/classes/Sprite.js"></script>
     <script src="./js/classes/Player.js"></script>
     <script src="./js/eventListener.js"></script>

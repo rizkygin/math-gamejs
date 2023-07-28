@@ -23,6 +23,8 @@ class Player extends Sprite {
     if (this.sides.top <= 0) {
       this.position.y = 0;
       this.velocity.y = 1;
+      keys.jump.pressed = false;
+      keys.up.pressed = false;
     } else {
       if (this.sides.bottom < canvas.height - ground) {
         this.velocity.y += this.gravity;
@@ -35,22 +37,47 @@ class Player extends Sprite {
     if (this.sides.bottom > canvas.height) {
       this.position.y = canvas.height - this.height;
     }
+    if (this.position.x <= 0) {
+      keys.left.pressed = false;
+      this.position.x = 0;
+    }
   }
   updateSides() {
     this.sides.bottom = this.position.y + this.height;
     this.sides.top = this.position.y;
   }
   enterMap2() {
-    // c.fillStyle = "rgba(0,225,0,0.5)";
-    // c.fillRect(835,222,130,250)
-
-    
-    if(player.position.x >= 835 && player.position.y >=222 && player.position.x <= 965 && player.position.y <= 472){
-      door.drawAnimate(false);
-      console.log("harusnya animasinya muncul")
-    }else{
-      door.animateBackward(false);
-      console.log("animateBackward");
+    if (this.onDoor()) {
+      door.drawAnimate(false); 
+    } else {
+      if (door.currentFrame > 0) {
+        door.animateBackward(false);
+      }
     }
+  }
+  onDoor() {
+    if (
+      player.position.x >= 835 &&
+      player.position.y >= 222 &&
+      player.position.x <= 965 &&
+      player.position.y <= 472
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  enteringMap2() {
+    if (door.currentFrame >= door.frameRate) {
+    }
+  }
+  movement() {
+    player.velocity.x = 0;
+    if (keys.left.pressed) player.position.x += -5;
+    else if (keys.right.pressed) player.position.x += 5;
+
+    if (keys.down.pressed) player.position.y += 5;
+    else if (keys.up.pressed) player.position.y -= 5;
+    else if (keys.jump.pressed) player.velocity.y -= 5;
   }
 }

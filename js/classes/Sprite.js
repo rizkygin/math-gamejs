@@ -58,6 +58,7 @@ class Sprite {
   }
 
   animateBackward(loop){
+    // console.log('ha')
     if (!this.loaded) return;
     const cropbox = {
       position: {
