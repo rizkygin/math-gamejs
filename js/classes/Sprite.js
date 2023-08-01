@@ -95,6 +95,14 @@ class Sprite {
       }
     }
   }
+  remove_animation() {
+    this.image = new Image();
+  }
+  removeAllElement(){
+    fire.remove_animation();
+    water.remove_animation();
+    ice.remove_animation();
+  }
   collisionStair() {
     // c.fillStyle = "rgba(0,225,0,0.2)";
     // c.fillRect(0,260,130,187)
@@ -165,9 +173,53 @@ class Sprite {
     }
   }
 
-  remove_animation() {
-    this.image = new Image();
+  iceMap3(){
+    ice.drawAnimate(true);
+    // c.fillStyle ="red";
+    // c.fillRect(60,50,30,30);
+    if (
+      ((player.position.x >= 60 || player.position.x + player.width >= 60) &&
+       (player.position.x <= 90 || player.position.x + player.width <= 90) && 
+       (player.position.y <= 50 || player.sides.bottom <= 50) && 
+       (player.position.y >= 80 || player.sides.bottom >= 80))
+    ) {
+      state.element = 'ice';
+      this.removeAllElement();
+      console.log(state.element);
+    }
   }
+  fireMap3(){
+    fire.drawAnimate(true);
+    // c.fillStyle ="red";
+    // c.fillRect(210,50,30,30);
+    if (
+      ((player.position.x >= 210 || player.position.x + player.width >= 210) &&
+       (player.position.x <= 240 || player.position.x + player.width <= 240) && 
+       (player.position.y <= 50 || player.sides.bottom <= 50) && 
+       (player.position.y >= 80 || player.sides.bottom >= 80))
+    ) {
+      state.element = 'fire';
+      this.removeAllElement();
+      console.log(state.element);
+    }
+  }
+  waterMap3(){
+    water.drawAnimate(true);
+    // c.fillStyle ="red";
+    // c.fillRect(360,50,30,30);
+    if (
+      ((player.position.x >= 360 || player.position.x + player.width >= 360) &&
+       (player.position.x <= 390 || player.position.x + player.width <= 390) && 
+       (player.position.y <= 50 || player.sides.bottom <= 50) && 
+       (player.position.y >= 80 || player.sides.bottom >= 80))
+    ) {
+      state.element = 'water';
+      this.removeAllElement();
+      console.log(state.element);
+    }
+  }
+
+  
 }
 const map1 = new Sprite({
   position: {
@@ -190,6 +242,13 @@ const map3 = new Sprite({
   },
   imageSrc: "./images/map/map3.png",
 });
+const map4 = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  imageSrc: "./images/map/map4.png",
+})
 
 const hpMap2 = new Sprite({
   position: {
@@ -200,3 +259,31 @@ const hpMap2 = new Sprite({
   frameRate: 5,
   frameBuffer: 10,
 });
+
+const ice = new Sprite({
+  position :{
+    x: 0,
+    y: 0,
+  },
+  imageSrc: "./images/env/ice.png",
+  frameRate : 5,
+  frameBuffer: 10,
+})
+const fire = new Sprite({
+  position :{
+    x: 150,
+    y: 0,
+  },
+  imageSrc: "./images/env/fire.png",
+  frameRate : 5,
+  frameBuffer: 10,
+})
+const water = new Sprite({
+  position :{
+    x: 300,
+    y: 0,
+  },
+  imageSrc: "./images/env/water.png",
+  frameRate : 5,
+  frameBuffer : 10,
+})

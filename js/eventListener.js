@@ -73,6 +73,8 @@ enter.addEventListener("touchstart", (e) => {
 
 window.addEventListener("keydown", (event) => {
   // console.log(event.key);
+  event.preventDefault();
+
   switch (event.key) {
     case "ArrowUp":
       keys.up.pressed = true;
@@ -115,6 +117,7 @@ window.addEventListener("keydown", (event) => {
   }
 });
 window.addEventListener("keyup", (event) => {
+  event.preventDefault();
   switch (event.key) {
     case "ArrowLeft":
       keys.left.pressed = false;
@@ -133,4 +136,3 @@ window.addEventListener("keyup", (event) => {
       break;
   }
 });
-class Listener {}
