@@ -22,10 +22,6 @@ class Boss extends Sprite{
     }
 
     hitBox(){
-        // c.fillStyle = 'red';
-        // c.fillRect(canvas.width - this.width, 10, this.width, this.height);
-
-        
     }
     health(){
         c.fillStyle = 'white';

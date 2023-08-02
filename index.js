@@ -7,6 +7,18 @@ canvas.height = 64 * 9; //576
 
 const ground = 110;
 
+  const a = Math.floor(Math.random() * 40) + 1;
+  const b = Math.floor(Math.random() * 40) + 1;
+  const ca = Math.floor(Math.random() * 40) + 1;
+  
+  const alas = Math.floor(Math.random() * 30) + 1;
+  const tinggi = Math.floor(Math.random() * 30) + 1;
+  
+  const luas = Math.random() >= 0.5;
+  const figure = Math.floor(Math.random() * 7);
+
+
+
 const state = {
   map: 4,
   hp: 100,
@@ -14,8 +26,28 @@ const state = {
   climbStair: false,
 
   answering: false,
+  questionAnswer: 0,
+  a: a.toString(),
+  b: b.toString(),
+  ca: ca.toString(),
+  alas: alas.toString(),
+  tinggi: tinggi.toString(),
+  luas: luas,
+  figure: figure,
+  refresh: this.refresh
 };
 
+function refresh(){
+   state.a = Math.floor(Math.random() * 40) + 1;
+   state.b = Math.floor(Math.random() * 40) + 1;
+   state.ca = Math.floor(Math.random() * 40) + 1;
+  
+   state.alas = Math.floor(Math.random() * 30) + 1;
+   state.tinggi = Math.floor(Math.random() * 30) + 1;
+  
+   state.luas = Math.random() >= 5;
+   state.figure = Math.floor(Math.random() * 7);
+}
 const player = new Player({
   imageSrc: "./images/character/character.png",
   frameRate: 11,
@@ -62,20 +94,16 @@ const keys = {
   },
 };
 
-const warior = new Warrior(
-  {
-    imageSrc: "./images/character/warrior.png",
-    frameRate: 1,
-    framBuffer:0
-  }
-);
-const boss = new Boss(
-  {
-    imageSrc: "./images/character/boss.png",
-    frameRate: 1,
-    frameBuffer:0,
-  }
-)
+const warior = new Warrior({
+  imageSrc: "./images/character/warrior.png",
+  frameRate: 1,
+  framBuffer: 0,
+});
+const boss = new Boss({
+  imageSrc: "./images/character/boss.png",
+  frameRate: 1,
+  frameBuffer: 0,
+});
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -103,7 +131,7 @@ function animate() {
     player.movement();
     player.drawAnimate(true);
     player.update();
-  }else{
+  } else {
     map4.draw();
     warior.draw();
     warior.health();
@@ -113,8 +141,8 @@ function animate() {
     boss.timer();
     boss.draw();
 
-    if(!state.answering){
-      warior.questions();
+    if (!state.answering) {
+      state.questionAnswer = warior.questions();
     }
   }
 }
