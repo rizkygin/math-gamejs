@@ -18,7 +18,7 @@ const luas = Math.random() >= 0.5;
 const figure = Math.floor(Math.random() * 7);
 
 const state = {
-  map: 4,
+  map: 1,
   hp: 100,
   element: null,
   bossElement: null,
