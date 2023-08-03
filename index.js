@@ -7,22 +7,21 @@ canvas.height = 64 * 9; //576
 
 const ground = 110;
 
-  const a = Math.floor(Math.random() * 40) + 1;
-  const b = Math.floor(Math.random() * 40) + 1;
-  const ca = Math.floor(Math.random() * 40) + 1;
-  
-  const alas = Math.floor(Math.random() * 30) + 1;
-  const tinggi = Math.floor(Math.random() * 30) + 1;
-  
-  const luas = Math.random() >= 0.5;
-  const figure = Math.floor(Math.random() * 7);
+const a = Math.floor(Math.random() * 40) + 1;
+const b = Math.floor(Math.random() * 40) + 1;
+const ca = Math.floor(Math.random() * 40) + 1;
 
+const alas = Math.floor(Math.random() * 30) + 1;
+const tinggi = Math.floor(Math.random() * 30) + 1;
 
+const luas = Math.random() >= 0.5;
+const figure = Math.floor(Math.random() * 7);
 
 const state = {
   map: 4,
   hp: 100,
-  element: "fire",
+  element: null,
+  bossElement: null,
   climbStair: false,
 
   answering: false,
@@ -34,19 +33,37 @@ const state = {
   tinggi: tinggi.toString(),
   luas: luas,
   figure: figure,
-  refresh: this.refresh
-};
 
-function refresh(){
-   state.a = Math.floor(Math.random() * 40) + 1;
-   state.b = Math.floor(Math.random() * 40) + 1;
-   state.ca = Math.floor(Math.random() * 40) + 1;
-  
-   state.alas = Math.floor(Math.random() * 30) + 1;
-   state.tinggi = Math.floor(Math.random() * 30) + 1;
-  
-   state.luas = Math.random() >= 5;
-   state.figure = Math.floor(Math.random() * 7);
+  warriorAttack: null,
+  bossAttack: null,
+  refresh: this.refresh,
+};
+function chooseBoosElement() {
+  const random = Math.floor(Math.random() * 3);
+  switch (random) {
+    case 1:
+      state.bossElement = 'fire';
+      break;
+    case 2:
+      state.bossElement = 'ice';
+      break;
+    default:
+      state.bossElement = 'water';
+      break;
+  }
+}
+this.chooseBoosElement();
+function refresh() {
+  state.a = Math.floor(Math.random() * 40) + 1;
+  state.b = Math.floor(Math.random() * 40) + 1;
+  state.ca = Math.floor(Math.random() * 40) + 1;
+
+  state.alas = Math.floor(Math.random() * 30) + 1;
+  state.tinggi = Math.floor(Math.random() * 30) + 1;
+
+  state.luas = Math.random() >= 5;
+  state.figure = Math.floor(Math.random() * 7);
+  state.answering = false;
 }
 const player = new Player({
   imageSrc: "./images/character/character.png",
@@ -104,11 +121,27 @@ const boss = new Boss({
   frameRate: 1,
   frameBuffer: 0,
 });
-
+const listener = new EventListener();
 function animate() {
   window.requestAnimationFrame(animate);
+  listener.listener();
 
-  if (!state.map === 4) {
+  if (state.map === 4) {
+    map4.draw();
+    warior.draw();
+    warior.health();
+    warior.drawQuestion();
+    boss.hitBox();
+    boss.health();
+    boss.timer();
+    boss.draw();
+
+    map4.attackListener();
+
+    if (!state.answering) {
+      state.questionAnswer = warior.questions();
+    }
+  } else {
     switch (state.map) {
       case 1:
         map1.draw();
@@ -126,24 +159,13 @@ function animate() {
         map3.iceMap3();
         map3.fireMap3();
         map3.waterMap3();
+        // map3.defaultElement();
+        player.enterMap4();
         break;
     }
     player.movement();
     player.drawAnimate(true);
     player.update();
-  } else {
-    map4.draw();
-    warior.draw();
-    warior.health();
-    warior.drawQuestion();
-    boss.hitBox();
-    boss.health();
-    boss.timer();
-    boss.draw();
-
-    if (!state.answering) {
-      state.questionAnswer = warior.questions();
-    }
   }
 }
 

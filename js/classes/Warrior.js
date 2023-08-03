@@ -7,6 +7,11 @@ class Warrior extends Sprite {
     };
     this.width = 300;
     this.height = 300;
+    this.damage = 10;
+
+    this.shakingElapsedTime = 0;
+    this.i = 0;
+    this.effectElement = null;
   }
   draw() {
     // console.log('hai')
@@ -18,10 +23,54 @@ class Warrior extends Sprite {
     c.fillRect(0, canvas.height - 200, canvas.width, 200);
   }
   health() {
+    // console.log('haiiii ini ' + state.hp)
     c.fillStyle = "white";
     c.fillRect(10, 10, 400, 40);
+
+    c.fillStyle = "rgba(255,0,0,0.5)";
+    c.fillRect(10, 10, state.hp * 4 , 40);
+
+
   }
 
+
+  shaking() {
+    const bool = Boolean(Math.floor(Math.random() >= 0.5));
+    this.shakingElapsedTime++;
+    // console.log(state.bossElement());
+    switch (state.bossElement) {
+      case "water":
+        this.effectElement = water;
+        break;
+      case "fire":
+        this.effectElement = fire;
+        break;
+      case "ice":
+        this.effectElement = ice;
+        break;
+    }
+    this.effectElement.position.x = this.position.x + 100;
+    this.effectElement.position.y = this.position.y + 50;
+    this.effectElement.drawAnimate(true);
+    if (this.shakingElapsedTime % 10 === 0) {
+      if (bool) {
+        this.position.x += Math.floor(Math.random() * 10) + 1;
+      } else {
+        this.position.x -= Math.floor(Math.random() * 10) + 1;
+      }
+      this.effectElement.position.x = this.position.x + 100;
+      this.effectElement.position.y = this.position.y + 50;
+      this.i++;
+    }
+
+    if (this.i >= boss.damage) {
+      state.bossAttack = null;
+      this.shakingElapsedTime = 0;
+      this.i = 0;
+      state.hp -= boss.damage;
+
+    }
+  }
   questions() {
     // state.answering = true;
 
@@ -63,7 +112,7 @@ class Warrior extends Sprite {
         answer = this.parallelogram(state.a, state.tinggi, state.luas);
         break;
       default:
-        answer = this.square(state.a,state.luas);
+        answer = this.square(state.a, state.luas);
         break;
     }
     return answer;
@@ -128,7 +177,6 @@ class Warrior extends Sprite {
         c.fillText("__", 217, 465);
         c.fillText("7", 220, 485);
 
-      
         c.fillText("Luas = ", 610, 475);
         return Number((22 / 7) * Math.sqrt(jari));
       } else {
@@ -136,7 +184,6 @@ class Warrior extends Sprite {
 
         c.fillText("π = 3.14", 180, 465);
 
-      
         c.fillText("Luas = ", 610, 475);
         return Number(3.14 * jari * jari).toFixed(2);
       }
@@ -159,7 +206,7 @@ class Warrior extends Sprite {
         c.fillText("7", 220, 485);
 
         c.fillText("Keliling = ", 610, 475);
-        return Number((22 / 7) * (jari * 2));
+        return Number((22 / 7) * (jari * 2)).toFixed(2);
       } else {
         c.font = "20px arial";
 
@@ -190,66 +237,66 @@ class Warrior extends Sprite {
       return Number(a) + Number(b) + Number(ca) * 2;
     }
   }
-  kite(a,b,l) {
+  kite(a, b, l) {
     figureKite.draw();
     c.fillStyle = "grey";
     c.font = "20px arial";
-    if(l){
+    if (l) {
       c.fillText("d1 = " + a, 60, 450);
       c.fillText("d2 = " + b, 110, 492);
       c.fillText("Luas = ", 610, 475);
-      
-      return Number(a) * Number(b) / 2;
-    }else{
+
+      return (Number(a) * Number(b)) / 2;
+    } else {
       c.fillText("a = " + a, 7, 430);
       c.fillText("b = " + b, 170, 430);
       c.fillText("Keliling = ", 610, 475);
-      
+
       return Number(a) + Number(b) * 2;
     }
   }
-  rhombus(a,b,l) {
+  rhombus(a, b, l) {
     figureRhombus.draw();
     c.fillStyle = "grey";
     c.font = "20px arial";
     // console.log("rhoumbus");
-    if(l){
+    if (l) {
       c.fillText("d1 = " + a, 90, 420);
       c.fillText("d2 = " + b, 130, 472);
       c.fillText("Luas = ", 610, 475);
-      return Number(a)*Number(b) /2;
-    }else{
+      return (Number(a) * Number(b)) / 2;
+    } else {
       c.fillText("a = " + a, 20, 420);
       c.fillText("b = " + b, 170, 420);
       c.fillText("Keliling = ", 610, 475);
-      return (Number(a)+Number(b)) *2;
+      return (Number(a) + Number(b)) * 2;
     }
   }
-  parallelogram(a,b,l) {
+  parallelogram(a, b, l) {
     figureParelellogram.draw();
     c.fillStyle = "grey";
-    c.font = "20px arial"
-    if(l){
+    c.font = "20px arial";
+    if (l) {
       c.fillText("t = " + a, 135, 470);
       c.fillText("a = " + b, 130, 530);
       c.fillText("Luas = ", 610, 475);
-      return Number(a)*Number(b);
-    }else{
+      return Number(a) * Number(b);
+    } else {
       c.fillText("a = " + a, 155, 420);
       c.fillText("b = " + b, 130, 530);
       c.fillText("Keliling = ", 610, 475);
-      return (Number(a)+Number(b))/2;
+      return (Number(a) + Number(b)) / 2;
     }
   }
-  square(a,l) {
+  square(a, l) {
     figureSquare.draw();
     c.fillStyle = "grey";
-    c.font = "20px arial"
-    if(l){
+    c.font = "20px arial";
+    if (l) {
       c.fillText("s = " + a, 55, 470);
       c.fillText("Luas = ", 610, 475);
       return Number(a) * Number(a);
-    }else{
+    } else {
       c.fillText("s = " + a, 55, 470);
       c.fillText("Keliling = ", 610, 475);
       return Number(a) * 4;

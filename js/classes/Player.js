@@ -39,14 +39,16 @@ class Player extends Sprite {
       if (this.sides.bottom > canvas.height) {
         this.position.y = canvas.height - this.height;
       }
-    } 
-    //biar ga tenggelam ke kanan kiri
-    if (this.position.x <= 0) {
-      keys.left.pressed = false;
-      this.position.x = 0;
     }
-    if (this.position.x + this.width >= canvas.width) {
-      this.position.x = canvas.width - this.width;
+    //biar ga tenggelam ke kanan kiri
+    if (state.map !== 3) {
+      if (this.position.x <= 0) {
+        keys.left.pressed = false;
+        this.position.x = 0;
+      }
+      if (this.position.x + this.width >= canvas.width) {
+        this.position.x = canvas.width - this.width;
+      }
     }
   }
   updateSides() {
@@ -55,7 +57,7 @@ class Player extends Sprite {
   }
   enterMap2() {
     if (this.onDoor()) {
-      console.log('hai')
+      console.log("hai");
       door.drawAnimate(false);
     } else {
       if (door.currentFrame > 0) {
@@ -63,7 +65,7 @@ class Player extends Sprite {
       }
     }
   }
-  enterMap3(){
+  enterMap3() {
     if (this.onDoor2()) {
       door2.drawAnimate(false);
     } else {
@@ -84,7 +86,7 @@ class Player extends Sprite {
       return false;
     }
   }
-  onDoor2(){
+  onDoor2() {
     if (
       player.position.x >= 0 &&
       player.position.y >= 40 &&
@@ -104,5 +106,11 @@ class Player extends Sprite {
     if (keys.down.pressed) player.position.y += 5;
     else if (keys.up.pressed) player.position.y -= 5;
     else if (keys.jump.pressed) player.velocity.y -= 5;
+  }
+  enterMap4() {
+    if (player.position.x >= canvas.width) {
+      state.map = Number(4);
+      // console.log(state.map)
+    }
   }
 }
