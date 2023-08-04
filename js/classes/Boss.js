@@ -12,9 +12,9 @@ class Boss extends Sprite {
     this.time = {
       width: 100,
       height: 40,
-      value: 1,
+      value: 1500,
     };
-    this.hp = 0;
+    this.hp = 100;
 
     this.damage = 10;
     this.attribute = Math.floor(Math.random() * 3);

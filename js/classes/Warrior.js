@@ -123,14 +123,14 @@ class Warrior extends Sprite {
     c.font = "20px arial";
 
     if (l) {
-      c.fillText("a = " + state.alas, 110, 550);
-      c.fillText("t = " + state.tinggi, 70, 490);
+      c.fillText("a = " + alas, 110, 550);
+      c.fillText("t = " + tinggi, 70, 490);
       c.fillText("Luas = ", 620, 475);
       return (alas * tinggi) / 2;
     } else {
-      c.fillText("a = " + state.alas, 100, 550);
-      c.fillText("b = " + state.tinggi, 10, 460);
-      c.fillText("c = " + state.tinggi, 200, 460);
+      c.fillText("a = " + a, 100, 550);
+      c.fillText("b = " + b, 10, 460);
+      c.fillText("c = " + ca, 200, 460);
 
       c.fillText("Keliling = ", 610, 475);
       return Number(a) + Number(b) + Number(ca);
