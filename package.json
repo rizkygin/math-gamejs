@@ -1,0 +1,23 @@
+{
+  "name": "vanilla-js-math-game",
+  "version": "1.0.0",
+  "description": "game for 4grd elementary school",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizkygin/math-gamejs.git"
+  },
+  "author": "rizky kurniawan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rizkygin/math-gamejs/issues"
+  },
+  "homepage": "https://github.com/rizkygin/math-gamejs#readme",
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
+}

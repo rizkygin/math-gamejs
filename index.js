@@ -1,10 +1,11 @@
+// import * as fs from "fs";
+
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
 canvas.width = 64 * 16; //1024
 // canvas.height = 64 * 9; //576
 canvas.height = 64 * 9; //576
-const fs = require('fs')
 
 const ground = 110;
 
@@ -19,7 +20,7 @@ const luas = Math.random() >= 0.5;
 const figure = Math.floor(Math.random() * 7);
 
 const state = {
-  map: 3,
+  map: 1,
   hp: 100,
   element: null,
   bossElement: null,
