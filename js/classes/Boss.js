@@ -12,9 +12,9 @@ class Boss extends Sprite {
     this.time = {
       width: 100,
       height: 40,
-      value: 120,
+      value: 1,
     };
-    this.hp = 100;
+    this.hp = 0;
 
     this.damage = 10;
     this.attribute = Math.floor(Math.random() * 3);
@@ -22,9 +22,10 @@ class Boss extends Sprite {
     this.shakingElapsedTime = 0;
     this.i = 0;
     this.effectElement = null;
+
+    this.countDown = null;
   }
 
-  hitBox() {}
   health() {
     c.fillStyle = "white";
     c.fillRect(canvas.width - 410, 10, 400, 40);
@@ -50,7 +51,6 @@ class Boss extends Sprite {
     if (!this.loaded) return;
     c.drawImage(this.image, this.position.x, this.position.y);
   }
-  attack() {}
 
   shaking() {
     const bool = Boolean(Math.floor(Math.random() >= 0.5));
@@ -86,10 +86,29 @@ class Boss extends Sprite {
       state.warriorAttack = null;
       this.shakingElapsedTime = 0;
       this.i = 0;
-      
 
       this.hp -= warior.damage;
       fire.animateBackward(false);
+    }
+  }
+  countDownStart() {
+    if (boss.map4Timer) {
+      this.countDown = setInterval(this.countDownState, 1000);
+      console.log("ini sekali aja harysnya");
+      boss.map4Timer = false;
+    }
+  }
+  countDownState() {
+    boss.time.value -= 1;
+    if(boss.time.value <= 0){
+      // state.gameOver = true;
+      boss.gameOverExec();
+    }
+  }
+  gameOverExec(win){
+    state.gameOver = true;
+    if(win){
+      state.gameResult = true
     }
   }
 }

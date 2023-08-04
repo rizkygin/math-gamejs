@@ -14,6 +14,8 @@ class Sprite {
     this.currentFrame = 0;
     this.elapsedTime = 0;
     this.frameBuffer = frameBuffer;
+
+    this.map4Timer = true;
   }
   draw() {
     if (!this.loaded) return;
@@ -224,68 +226,91 @@ class Sprite {
     ) {
       state.element = "water";
       this.removeAllElement();
-      console.log(state.element);
+      console.log("element warrior: " + state.element);
     }
   }
   attackListener() {
-    if (state.map === 4 && state.element == null) {
-      this.defaultElement();
-      switch (state.bossElement) {
-        case "fire":
-          if (state.element == "water") {
-            warior.damage = 15;
-          }
-          if (state.element == "ice") {
-            warior.damage = 5;
-          }
-          break;
-        case "water":
-          if (state.element == "fire") {
-            warior.damage = 5;
-          }
-          if (state.element == "ice") {
-            warior.damage = 15;
-          }
-          break;
-        case "ice":
-          if (state.element == "fire") {
-            warior.damage = 15;
-          }
-          if (state.element == "water") {
-            warior.damage = 5;
-          }
-          break;
+    if (this.map4Timer) {
+      boss.countDownStart();
+    }
+    if (!state.gameOver) {
+      if (state.map === 4 && state.element == null) {
+        this.defaultElement();
+        switch (state.bossElement) {
+          case "fire":
+            if (state.element == "water") {
+              warior.damage = 15;
+            }
+            if (state.element == "ice") {
+              warior.damage = 5;
+            }
+            break;
+          case "water":
+            if (state.element == "fire") {
+              warior.damage = 5;
+            }
+            if (state.element == "ice") {
+              warior.damage = 15;
+            }
+            break;
+          case "ice":
+            if (state.element == "fire") {
+              warior.damage = 15;
+            }
+            if (state.element == "water") {
+              warior.damage = 5;
+            }
+            break;
+        }
+        switch (state.element) {
+          case "fire":
+            if (boss.element == "water") {
+              boss.damage = 15;
+            } else if (boss.element == "ice") {
+              boss.damage = 5;
+            }
+            break;
+          case "water":
+            if (boss.element == "fire") {
+              boss.damage = 5;
+            } else if (boss.element == "ice") {
+              boss.damage = 15;
+            }
+            break;
+          case "ice":
+            if (boss.element == "fire") {
+              boss.damage = 15;
+            } else if (boss.element == "water") {
+              boss.damage = 5;
+            }
+            break;
+        }
       }
-      switch (state.element) {
-        case "fire":
-          if (boss.element == "water") {
-            boss.damage = 15;
-          } else if (boss.element == "ice") {
-            boss.damage = 5;
-          }
-          break;
-        case "water":
-          if (boss.element == "fire") {
-            boss.damage = 5;
-          } else if (boss.element == "ice") {
-            boss.damage = 15;
-          }
-          break;
-        case "ice":
-          if (boss.element == "fire") {
-            boss.damage = 15;
-          } else if (boss.element == "water") {
-            boss.damage = 5;
-          }
-          break;
+      if (state.warriorAttack) {
+        boss.shaking();
+      }
+      if (state.bossAttack) {
+        warior.shaking();
       }
     }
-    if (state.warriorAttack) {
-      boss.shaking();
+    
+  }
+  winStatement(win) {
+    if (state.gameOver) {
+      if (win) {
+        c.fillStyle = "red";
+        c.font = "20px Arial";
+        c.fillText("KAMU MENANG", 440, 300);
+      }else{
+        c.fillStyle = "red";
+        c.font = "20px Arial";
+        c.fillText("KAMU KALAH", 446, 300);
+      }
     }
-    if (state.bossAttack) {
-      warior.shaking();
-    }
+
+    const nickname = document.getElementById('nickname')
+    nickname.style.display = 'block';
+    
   }
 }
 const map1 = new Sprite({
@@ -353,4 +378,13 @@ const water = new Sprite({
   imageSrc: "./images/env/water.png",
   frameRate: 5,
   frameBuffer: 10,
+});
+const gameOverMap = new Sprite({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  imageSrc: "./images/map/gameover.png",
+  frameRate: 11,
+  frameBuffer: 4,
 });
