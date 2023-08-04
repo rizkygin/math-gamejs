@@ -35,7 +35,7 @@ class Boss extends Sprite {
   }
   timer() {
     c.fillStyle = "red";
-    c.fillRect(canvas.width / 2 - this.time.width / 2, 10, this.time.width, 40);
+    c.fillRect(canvas.width / 2 + 10 - this.time.width / 2, 10, this.time.width, 40);
 
     c.fillStyle = "white";
     c.font = "20px Arial";
