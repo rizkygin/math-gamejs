@@ -135,7 +135,7 @@ function animate() {
     if(boss.hp <= 0){
       boss.winStatement(true);
     }
-    if(boss.hp > 0){
+    if(boss.hp > 0 || warior.hp <= 0){
       boss.winStatement(false);
     }
   } else {

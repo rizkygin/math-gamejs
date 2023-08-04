@@ -293,6 +293,9 @@ class Sprite {
         warior.shaking();
       }
     }
+    if(state.hp <= 0){
+      state.gameOver = true;
+    }
     
   }
   winStatement(win) {
