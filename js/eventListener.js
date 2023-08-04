@@ -108,7 +108,7 @@ class EventListener {
         space.addEventListener("touchstart", (e) => {
           e.preventDefault();
           if (!state.climbStair) {
-            if (player.sides.bottom > canvas.height - ground) {
+            if (player.sides.bottom >= canvas.height - ground) {
               keys.jump.pressed = true;
             } else {
               keys.jump.pressed = false;
@@ -161,7 +161,7 @@ class EventListener {
         console.log(player.position.x + player.width);
         console.log("b: " + (player.position.x + player.width));
         if (!state.climbStair) {
-          if (player.sides.bottom > canvas.height - ground) {
+          if (player.sides.bottom >= canvas.height - ground) {
             keys.jump.pressed = true;
           } else {
             keys.jump.pressed = false;
