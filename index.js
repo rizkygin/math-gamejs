@@ -25,6 +25,7 @@ const state = {
   element: null,
   bossElement: null,
   climbStair: false,
+  wariorElement: "./images/character/warrior.png",
 
   answering: false,
   questionAnswer: 0,
@@ -41,7 +42,8 @@ const state = {
   refresh: this.refresh,
 
   gameOver: false,
-  gameResult: false
+  gameResult: false,
+  map4Draw: true,
 };
 function chooseBoosElement() {
   const random = Math.floor(Math.random() * 3);
@@ -117,11 +119,16 @@ const keys = {
 };
 
 const warior = new Warrior({
-  imageSrc: "./images/character/warrior.png",
+  imageSrc: "",
   frameRate: 1,
   framBuffer: 0,
 });
 const boss = new Boss({
+  imageSrc: "./images/character/boss.png",
+  frameRate: 1,
+  frameBuffer: 0,
+});
+const question = new Question({
   imageSrc: "./images/character/boss.png",
   frameRate: 1,
   frameBuffer: 0,
@@ -132,18 +139,35 @@ function animate() {
   listener.listener();
   if (state.gameOver) {
     gameOverMap.drawAnimate();
-    if(boss.hp <= 0){
+    if (boss.hp <= 0) {
       boss.winStatement(true);
     }
-    if(boss.hp > 0 || warior.hp <= 0){
+    if (boss.hp > 0 || warior.hp <= 0) {
       boss.winStatement(false);
     }
   } else {
     if (state.map === 4) {
       map4.draw();
+      if(state.map4Draw){
+        switch (state.element) {
+          case "fire":
+            warior.changeElement('./images/character/wariorFire.png');
+            state.map4Draw = false;
+            break;
+          case "water":
+            warior.changeElement('./images/character/wariorWater.png');
+            state.map4Draw = false;
+            break;
+          case "ice":
+            warior.changeElement('./images/character/wariorIce.png');
+            state.map4Draw = false;
+            break;
+        }
+      }
+      
+      // console.log(warior.imageSrc) 
       warior.draw();
       warior.health();
-      warior.drawQuestion();
       boss.health();
       boss.timer();
       boss.draw();
@@ -151,7 +175,8 @@ function animate() {
       map4.attackListener();
 
       if (!state.answering) {
-        state.questionAnswer = warior.questions();
+        //TODO :: MAKE QUESTION APPEAR HERE
+        question.drawQuestion();
       }
     } else {
       switch (state.map) {

@@ -177,7 +177,7 @@ class Sprite {
   }
 
   defaultElement() {
-    console.log("hai ini dedault");
+    // console.log("hai ini dedault");
     if (state.element == null) {
       // console.log('hai ini dedault')
       state.element = "fire";

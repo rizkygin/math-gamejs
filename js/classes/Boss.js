@@ -94,7 +94,7 @@ class Boss extends Sprite {
   countDownStart() {
     if (boss.map4Timer) {
       this.countDown = setInterval(this.countDownState, 1000);
-      console.log("ini sekali aja harysnya");
+      // console.log("ini sekali aja harysnya");
       boss.map4Timer = false;
     }
   }

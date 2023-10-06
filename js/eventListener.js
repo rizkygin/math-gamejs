@@ -32,35 +32,35 @@ class EventListener {
       
     });
 
-    this.submits.addEventListener('click',() => {
-      state.answering = true;
-      const answer = this.resultAnswer.value;
-      if(state.answering && answer === state.questionAnswer.toString()){
-        console.log('benar')
-        state.warriorAttack = true;
-      }else{
-        console.log('salah')
-        state.bossAttack = true;
-      }
-      state.answering = false;
-      state.refresh();
-      this.resultAnswer.value = "";
-    });
+    // this.submits.addEventListener('click',() => {
+    //   state.answering = true;
+    //   const answer = this.resultAnswer.value;
+    //   if(state.answering && answer === state.questionAnswer.toString()){
+    //     console.log('benar')
+    //     state.warriorAttack = true;
+    //   }else{
+    //     console.log('salah')
+    //     state.bossAttack = true;
+    //   }
+    //   state.answering = false;
+    //   state.refresh();
+    //   this.resultAnswer.value = "";
+    // });
   }
 
   listener() {
     if (state.map === 4) {
-      this.answerSection.style.display = "block";
+      // this.answerSection.style.display = "block";
       if(state.gameOver){
         this.answerSection.style.display = "none";
       }
       window.removeEventListener("keydown", this.onKeydown);
       window.removeEventListener("keyup", this.onKeyUp);
-      console.log("jawaban :" + state.questionAnswer);
+      // console.log("jawaban :" + state.questionAnswer);
 
     } else {
       if(this.firstTime){
-        this.answerSection.style.display = "none";
+        // this.answerSection.style.display = "none";
         const leftButton = document.getElementById("left");
         const rightButton = document.getElementById("right");
         const topButton = document.getElementById("top");
