@@ -50,7 +50,7 @@ const picQ15 = new Sprite({
 class Question extends Sprite {
   constructor(imageSrc, frameRate, frameBuffer) {
     super(imageSrc, frameRate, frameBuffer);
-    this.count = 14;
+    this.count = 0;
     this.jsonQuestion = {
       questions: [
         {
