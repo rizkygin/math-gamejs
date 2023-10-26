@@ -20,7 +20,7 @@ const luas = Math.random() >= 0.5;
 const figure = Math.floor(Math.random() * 7);
 
 const state = {
-  map: 1,
+  map: 4,
   hp: 100,
   element: null,
   bossElement: null,
@@ -37,6 +37,8 @@ const state = {
   luas: luas,
   figure: figure,
 
+  showOption: false,
+
   warriorAttack: null,
   bossAttack: null,
   refresh: this.refresh,
@@ -45,6 +47,9 @@ const state = {
   gameResult: false,
   map4Draw: true,
 };
+function clickOptions() {
+  state.showOption = !state.showOption;
+}
 function chooseBoosElement() {
   const random = Math.floor(Math.random() * 3);
   switch (random) {
@@ -148,24 +153,22 @@ function animate() {
   } else {
     if (state.map === 4) {
       map4.draw();
-      if(state.map4Draw){
+      if (state.map4Draw) {
         switch (state.element) {
           case "fire":
-            warior.changeElement('./images/character/wariorFire.png');
+            warior.changeElement("./images/character/wariorFire.png");
             state.map4Draw = false;
             break;
           case "water":
-            warior.changeElement('./images/character/wariorWater.png');
+            warior.changeElement("./images/character/wariorWater.png");
             state.map4Draw = false;
             break;
           case "ice":
-            warior.changeElement('./images/character/wariorIce.png');
+            warior.changeElement("./images/character/wariorIce.png");
             state.map4Draw = false;
             break;
         }
       }
-      
-      // console.log(warior.imageSrc) 
       warior.draw();
       warior.health();
       boss.health();
@@ -174,9 +177,26 @@ function animate() {
 
       map4.attackListener();
 
-      if (!state.answering) {
-        //TODO :: MAKE QUESTION APPEAR HERE
-        question.drawQuestion();
+      question.drawQuestion();
+
+      if(listener.userAnswer){
+        console.log('ini di index :' + listener.userAnswer )
+        if(listener.userAnswer !== listener.jawaban){
+          state.bossAttack = true;
+        }else{
+          state.warriorAttack = true;
+        }
+      }
+      if (state.showOption) {
+        // console.log("haiii ninininin");
+        const form = document.querySelector("form.pure-form");
+        form.style.display = "block";
+        document.getElementById("onceShow").style.display = "none";
+        c.fillStyle = "white";
+        c.fillRect(0, canvas.height - 200, canvas.width, 200);
+      } else {
+        const form = document.querySelector("form.pure-form");
+        form.style.display = "none";
       }
     } else {
       switch (state.map) {

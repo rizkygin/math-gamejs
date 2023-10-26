@@ -21,9 +21,45 @@
   <body style="position: relative">
     <div style="position: relative">
       <canvas></canvas>
+      <script>
+        var show = false;
+      </script>
+      <img id ="showOptions" onclick="clickOptions()" style="position: absolute; bottom: 85px; left: 990px; width: 30px; cursor: pointer;" src="./images/questionspic/1x/openButton.png" />
+      <img id ="onceShow" style="position: absolute; bottom: 10px; left: 930px; width: 70px;" src="./images/questionspic/1x/lihatjawaban.png" />
+
+      <div
+        style="position: absolute; left: 50px; bottom: 50px; display: none"
+        id="map4"
+      >
+        <form class="pure-form" style="display: none;">
+          <div
+            id="jawabanganda"
+            style="display: flex; color: black; gap: 10px"
+          >
+            <div>
+              <input type="radio" name="jawaban" value="0" id="answer0" />
+              <label id="option0" style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
+              <br>
+              <input type="radio" name="jawaban" value="1" id="answer1" />
+              <label id="option1" style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
+            </div>
+            <div>
+              <input type="radio" name="jawaban" value="2" id="answer2" />
+              <label id="option2"style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
+              <br>
+              <input type="radio" name="jawaban" value="3" id="answer3" />
+              <label id="option3"style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
+            </div>
+          </div>
+          <button id="answerButton" style="width: 100%; float: right; margin-top: 20px;" type="submit">
+            JAWAB
+          </button>
+        </form>
+        <br />
+      </div>
       <!-- //TODO:: Answer write here -->
       <div
-        style="position: absolute; left: 420px; bottom: 220px; display: none"
+        style="position: absolute; left: 450px; bottom: 220px; display: none"
         id="nickname"
       >
         <input type="text" id="nicknameInput" name="nickname" />
@@ -53,14 +89,14 @@
         <div id="enter"><img src="./images/button/enter.png" /></div>
       </div>
     </div>
-
+    
     <script src="./js/buttons/buttons.js"></script>
     <script src="./js/classes/Sprite.js"></script>
     <script src="./js/classes/Player.js"></script>
     <script src="./js/classes/Warrior.js"></script>
     <script src="./js/classes/Boss.js"></script>
-    <script src="./js/classes/Question.js"></script>
     <script src="./js/eventListener.js"></script>
+    <script src="./js/classes/Question.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

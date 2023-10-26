@@ -214,8 +214,10 @@ class Question extends Sprite {
     for (let i = 0; i < lines.length; i++) {
       c.fillText(lines[i], x, y + 20 * i);
     }
-
-    //pic
+    const options = currentQuestion.options;
+    const event = new EventListener();
+    const jawaban = currentQuestion.answer;
+    event.changeJawaban(options[0],options[1],options[2],options[3],jawaban);
     switch (this.count+1) {
       case 1:
         picQ1.draw();
