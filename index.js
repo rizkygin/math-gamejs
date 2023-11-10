@@ -22,7 +22,7 @@ const figure = Math.floor(Math.random() * 7);
 const state = {
   map: 1,
   hp: 100,
-  section: 2,
+  section: 1,
   element: null,
   bossElement: null,
   climbStair: false,
