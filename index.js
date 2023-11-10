@@ -150,28 +150,29 @@ function animate() {
 
   if (state.gameOver) {
     gameOverMap.drawAnimate();
-    console.log('hai ini harusnya jalan woy')
+    console.log("hai ini harusnya jalan woy");
     if (boss.hp <= 0) {
       boss.winStatement(true);
     }
-    if(boss.hp > state.hp){
+    if (boss.hp > state.hp) {
       boss.winStatement(false);
     }
-    if(state.hp > boss.hp){
+    if (state.hp > boss.hp) {
       boss.winStatement(true);
     }
-    if(state.hp === boss.hp){
+    if (state.hp === boss.hp) {
       boss.winStatement(true);
-
     }
     // console.log(jawabanBenar);
   } else {
     if (state.map === 4) {
-      if (question.count >= (5 * state.section)) {
+      if (question.count >= 5 * state.section) {
         state.gameOver = true;
-        // console.log(boss.hp) 
+        // console.log(boss.hp)
       } else {
         map4.draw();
+        document.getElementById("showOptions").style.display = "block";
+        document.getElementById("showOptions").style.display = "block";
         if (state.map4Draw) {
           switch (state.element) {
             case "fire":
@@ -200,12 +201,11 @@ function animate() {
         // console.log(listener.userAnswer);
         if (state.attackListener) {
           clickOptions();
-          if(state.warriorAttack){
+          if (state.warriorAttack) {
             state.jawabanBenar.push(question.count);
           }
           console.log(question.count + "yayayayyayayay");
           question.nextQuestion();
-          
 
           state.attackListener = false;
           console.log(state.jawabanBenar);
