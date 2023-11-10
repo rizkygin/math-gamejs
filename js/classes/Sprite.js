@@ -293,10 +293,9 @@ class Sprite {
         warior.shaking();
       }
     }
-    if(state.hp <= 0){
+    if (state.hp <= 0) {
       state.gameOver = true;
     }
-    
   }
   winStatement(win) {
     if (state.gameOver) {
@@ -304,16 +303,28 @@ class Sprite {
         c.fillStyle = "red";
         c.font = "20px Arial";
         c.fillText("KAMU MENANG", 440, 300);
-      }else{
+      } else {
         c.fillStyle = "red";
         c.font = "20px Arial";
         c.fillText("KAMU KALAH", 446, 300);
       }
+      c.fillStyle = "red";
+      c.font = "20px Arial";
+      c.fillText("Nomor Jawaban Benar", 412, 330);
+      c.fillStyle = "green";
+      c.font = "20px Arial";
+      c.fillText("[",436 , 360 );
+      
+      state.jawabanBenar.forEach((e,i) => {
+        const x = i*20;
+        c.fillText(e,(446 + x) , 360 );
+      });
+      c.fillText("]",(446 + state.jawabanBenar.length * 20) , 360 );
+
     }
 
-    const nickname = document.getElementById('nickname')
-    nickname.style.display = 'block';
-    
+    const nickname = document.getElementById("nickname");
+    nickname.style.display = "block";
   }
 }
 const map1 = new Sprite({

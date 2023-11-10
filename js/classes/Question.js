@@ -6,51 +6,51 @@ const picQ1 = new Sprite({
   imageSrc: "../../images/questionspic/q1.png",
 });
 const picQ2 = new Sprite({
-    position: {
-      x: 400,
-      y: 459,
-    },
-    imageSrc: "../../images/questionspic/q2.png",
+  position: {
+    x: 400,
+    y: 459,
+  },
+  imageSrc: "../../images/questionspic/q2.png",
 });
 const picQ4 = new Sprite({
-    position: {
-      x: 400,
-      y: 420,
-    },
-    imageSrc: "../../images/questionspic/q4.png",
+  position: {
+    x: 400,
+    y: 420,
+  },
+  imageSrc: "../../images/questionspic/q4.png",
 });
 const picQ5 = new Sprite({
-    position: {
-      x: 400,
-      y: 410,
-    },
-    imageSrc: "../../images/questionspic/q5.png",
+  position: {
+    x: 400,
+    y: 410,
+  },
+  imageSrc: "../../images/questionspic/q5.png",
 });
 const picQ10 = new Sprite({
-    position: {
-      x: 400,
-      y: 380,
-    },
-    imageSrc: "../../images/questionspic/q10.png",
+  position: {
+    x: 400,
+    y: 380,
+  },
+  imageSrc: "../../images/questionspic/q10.png",
 });
 const picQ11 = new Sprite({
-    position: {
-      x: 400,
-      y: 410,
-    },
-    imageSrc: "../../images/questionspic/q11.png",
+  position: {
+    x: 400,
+    y: 410,
+  },
+  imageSrc: "../../images/questionspic/q11.png",
 });
 const picQ15 = new Sprite({
-    position: {
-      x: 400,
-      y: 410,
-    },
-    imageSrc: "../../images/questionspic/q15.png",
+  position: {
+    x: 400,
+    y: 410,
+  },
+  imageSrc: "../../images/questionspic/q15.png",
 });
 class Question extends Sprite {
   constructor(imageSrc, frameRate, frameBuffer) {
     super(imageSrc, frameRate, frameBuffer);
-    this.count = 0;
+    this.count = (state.section - 1) * 5;
     this.jsonQuestion = {
       questions: [
         {
@@ -196,73 +196,88 @@ class Question extends Sprite {
     };
   }
   drawQuestion() {
-    c.fillStyle = "white";
-    c.fillRect(0, canvas.height - 200, canvas.width, 200);
+    if (this.count < (state.section * 5)) {
+      c.fillStyle = "white";
+      c.fillRect(0, canvas.height - 200, canvas.width, 200);
 
-    // console.log(this.jsonQuestion.questions[this.count]);
-    const currentQuestion = this.jsonQuestion.questions[this.count];
-    const x = 10;
-    const y = 400;
+      // console.log(this.jsonQuestion.questions[this.count]);
+      const currentQuestion = this.jsonQuestion.questions[this.count];
+      const x = 10;
+      const y = 400;
 
-    const h = 20;
-    c.fillStyle = "grey";
-    c.font = "20px arial";
+      const h = 20;
+      c.fillStyle = "grey";
+      c.font = "20px arial";
 
-    //q1
-    const q1 = currentQuestion.question;
-    var lines = q1.split("\n");
-    for (let i = 0; i < lines.length; i++) {
-      c.fillText(lines[i], x, y + 20 * i);
+      //q1
+      const q1 = currentQuestion.question;
+      if (q1) {
+        var lines = q1.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+          c.fillText(lines[i], x, y + 20 * i);
+        }
+      }
+
+      const options = currentQuestion.options;
+      const event = new EventListener();
+      const jawaban = currentQuestion.answer;
+      event.changeJawaban(
+        options[0],
+        options[1],
+        options[2],
+        options[3],
+        jawaban
+      );
+      switch (this.count + 1) {
+        case 1:
+          picQ1.draw();
+          break;
+        case 2:
+          picQ2.draw();
+          break;
+        case 3:
+          break;
+        case 4:
+          picQ4.draw();
+          break;
+        case 5:
+          picQ5.draw();
+          break;
+        case 6:
+          break;
+        case 7:
+          break;
+        case 8:
+          break;
+        case 9:
+          break;
+        case 10:
+          picQ10.draw();
+          break;
+        case 11:
+          picQ11.draw();
+          break;
+        case 12:
+          break;
+        case 13:
+          break;
+        case 14:
+          break;
+        case 15:
+          picQ15.draw();
+          break;
+      }
+      //q2
+      const q2 = currentQuestion.question2;
+      if (q2) {
+        var lines = q2.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+          c.fillText(lines[i], x, 560 + 20 * i);
+        }
+      }
     }
-    const options = currentQuestion.options;
-    const event = new EventListener();
-    const jawaban = currentQuestion.answer;
-    event.changeJawaban(options[0],options[1],options[2],options[3],jawaban);
-    switch (this.count+1) {
-      case 1:
-        picQ1.draw();
-        break;
-      case 2:
-        picQ2.draw();
-        break;
-      case 3:
-        break;
-      case 4:
-        picQ4.draw();
-        break;
-      case 5:
-        picQ5.draw();
-        break;
-      case 6:
-        break;
-      case 7:
-        break;
-      case 8:
-        break;
-      case 9:
-        break;
-      case 10:
-        picQ10.draw();
-        break;
-      case 11:
-        picQ11.draw();
-        break;
-      case 12:
-        break;
-      case 13:
-        break;
-      case 14:
-        break;
-      case 15:
-        picQ15.draw();
-        break;
-    }
-    //q2
-    const q2 = currentQuestion.question2;
-    var lines = q2.split("\n");
-    for (let i = 0; i < lines.length; i++) {
-      c.fillText(lines[i], x, 560  + 20 * i);
-    }
-    
+  }
+  nextQuestion() {
+    this.count += 1;
   }
 }

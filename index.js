@@ -20,8 +20,9 @@ const luas = Math.random() >= 0.5;
 const figure = Math.floor(Math.random() * 7);
 
 const state = {
-  map: 4,
+  map: 1,
   hp: 100,
+  section: 1,
   element: null,
   bossElement: null,
   climbStair: false,
@@ -46,9 +47,13 @@ const state = {
   gameOver: false,
   gameResult: false,
   map4Draw: true,
+  attackListener: false,
+
+  jawabanBenar: [],
 };
 function clickOptions() {
   state.showOption = !state.showOption;
+  // console.log("show option clicked")
 }
 function chooseBoosElement() {
   const random = Math.floor(Math.random() * 3);
@@ -142,61 +147,80 @@ const listener = new EventListener();
 function animate() {
   window.requestAnimationFrame(animate);
   listener.listener();
+
   if (state.gameOver) {
     gameOverMap.drawAnimate();
+    console.log('hai ini harusnya jalan woy')
     if (boss.hp <= 0) {
       boss.winStatement(true);
     }
-    if (boss.hp > 0 || warior.hp <= 0) {
+    if(boss.hp > state.hp){
       boss.winStatement(false);
     }
+    if(state.hp > boss.hp){
+      boss.winStatement(true);
+    }
+    if(state.hp === boss.hp){
+      boss.winStatement(true);
+
+    }
+    // console.log(jawabanBenar);
   } else {
     if (state.map === 4) {
-      map4.draw();
-      if (state.map4Draw) {
-        switch (state.element) {
-          case "fire":
-            warior.changeElement("./images/character/wariorFire.png");
-            state.map4Draw = false;
-            break;
-          case "water":
-            warior.changeElement("./images/character/wariorWater.png");
-            state.map4Draw = false;
-            break;
-          case "ice":
-            warior.changeElement("./images/character/wariorIce.png");
-            state.map4Draw = false;
-            break;
-        }
-      }
-      warior.draw();
-      warior.health();
-      boss.health();
-      boss.timer();
-      boss.draw();
-
-      map4.attackListener();
-
-      question.drawQuestion();
-
-      if(listener.userAnswer){
-        console.log('ini di index :' + listener.userAnswer )
-        if(listener.userAnswer !== listener.jawaban){
-          state.bossAttack = true;
-        }else{
-          state.warriorAttack = true;
-        }
-      }
-      if (state.showOption) {
-        // console.log("haiii ninininin");
-        const form = document.querySelector("form.pure-form");
-        form.style.display = "block";
-        document.getElementById("onceShow").style.display = "none";
-        c.fillStyle = "white";
-        c.fillRect(0, canvas.height - 200, canvas.width, 200);
+      if (question.count >= (5 * state.section)) {
+        state.gameOver = true;
+        // console.log(boss.hp) 
       } else {
-        const form = document.querySelector("form.pure-form");
-        form.style.display = "none";
+        map4.draw();
+        if (state.map4Draw) {
+          switch (state.element) {
+            case "fire":
+              warior.changeElement("./images/character/wariorFire.png");
+              state.map4Draw = false;
+              break;
+            case "water":
+              warior.changeElement("./images/character/wariorWater.png");
+              state.map4Draw = false;
+              break;
+            case "ice":
+              warior.changeElement("./images/character/wariorIce.png");
+              state.map4Draw = false;
+              break;
+          }
+        }
+        warior.draw();
+        warior.health();
+        boss.health();
+        boss.timer();
+        boss.draw();
+
+        map4.attackListener();
+
+        question.drawQuestion();
+        // console.log(listener.userAnswer);
+        if (state.attackListener) {
+          clickOptions();
+          if(state.warriorAttack){
+            state.jawabanBenar.push(question.count);
+          }
+          console.log(question.count + "yayayayyayayay");
+          question.nextQuestion();
+          
+
+          state.attackListener = false;
+          console.log(state.jawabanBenar);
+        }
+        if (state.showOption) {
+          // console.log("haiii ninininin");
+          const form = document.querySelector("form.pure-form");
+          form.style.display = "block";
+          document.getElementById("onceShow").style.display = "none";
+          c.fillStyle = "white";
+          c.fillRect(0, canvas.height - 200, canvas.width, 200);
+        } else {
+          const form = document.querySelector("form.pure-form");
+          form.style.display = "none";
+        }
       }
     } else {
       switch (state.map) {

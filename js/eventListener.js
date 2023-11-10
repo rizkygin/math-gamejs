@@ -6,8 +6,8 @@ class EventListener {
     this.submits = document.getElementById("answerButton");
     this.resultAnswer = document.getElementById("answer");
 
-    this.sendNickname = document.getElementById("nicknameButton");
-    this.nicknameInput = document.getElementById("nicknameInput");
+    // this.sendNickname = document.getElementById("nicknameButton");
+    // this.nicknameInput = document.getElementById("nicknameInput");
 
     this.option0 = document.getElementById("option0");
     this.option1 = document.getElementById("option1");
@@ -16,41 +16,60 @@ class EventListener {
     this.jawaban = null;
     this.userAnswer = null;
 
+    this.form = document.querySelector("form.pure-form");
+  }
 
-    const form = document.querySelector("form.pure-form");
-    form.addEventListener("submit", function (e) {
+  changeJawaban(a, b, c, d, jawabans) {
+    this.option0.innerHTML = a;
+    this.option1.innerHTML = b;
+    this.option2.innerHTML = c;
+    this.option3.innerHTML = d;
+    // this.jawaban = jawabans;
+    this.jawaban = jawabans;
+    // console.log(this.jawaban);
+    // console.log("sudah diubah " + this.jawaban);
+    this.form.addEventListener("submit", function (e) {
       e.preventDefault();
       this.jawaban0 = document.getElementById("answer0");
       this.jawaban1 = document.getElementById("answer1");
       this.jawaban2 = document.getElementById("answer2");
       this.jawaban3 = document.getElementById("answer3");
-      // console.log(this.jawaban0);
-      // return;
+      
+      var userAnswering = null;
+      var kunciJawaban = null;
       if (this.jawaban0.checked) {
         console.log("jawabanA");
-        this.userAnswer = 0;
+        userAnswering = 0;
+        state.attackListener = true;
       } else if (this.jawaban1.checked) {
         console.log("jawabanB");
-        this.userAnswer = 1;
-
+        userAnswering = 1;
+        state.attackListener = true;
       } else if (this.jawaban2.checked) {
         console.log("jawabanC");
-        this.userAnswer = 2;
-
+        userAnswering = 2;
+        state.attackListener = true;
       } else if (this.jawaban3.checked) {
         console.log("jawabanD");
-        this.userAnswer = 3;
+        userAnswering = 3;
+        state.attackListener = true;
       }
-    });
-  }
+      if (state.attackListener) {
+          if (userAnswering !== jawabans) {
+            state.bossAttack = true;
+            state.warriorAttack = false;
+            
+            // console.log("boss attack");
+          } else {
+            state.warriorAttack = true;
+            state.bossAttack = false;
+            // console.log("warrior attack");
 
-  changeJawaban(a, b, c, d, jawaban) {
-    this.option0.innerHTML = a;
-    this.option1.innerHTML = b;
-    this.option2.innerHTML = c;
-    this.option3.innerHTML = d;
-    this.jawaban = jawaban;
-    console.log(this.jawaban);
+          }
+        }
+        // console.log("harusnya sudah nyerang ga sih :(");
+      
+    });
   }
 
   listener() {
