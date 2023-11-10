@@ -21,6 +21,8 @@ class Warrior {
 
     this.image;
     // this.loaded = false;
+    this.punchMusic = new Audio('music/wariorhurt.mp3')
+
   }
   
   health() {
@@ -34,6 +36,7 @@ class Warrior {
 
   }
   shaking() {
+    this.punchMusic.play();
     const bool = Boolean(Math.floor(Math.random() >= 0.5));
     this.shakingElapsedTime++;
     // console.log(state.bossElement());

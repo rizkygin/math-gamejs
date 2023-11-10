@@ -34,7 +34,7 @@ class EventListener {
       this.jawaban1 = document.getElementById("answer1");
       this.jawaban2 = document.getElementById("answer2");
       this.jawaban3 = document.getElementById("answer3");
-      
+
       var userAnswering = null;
       var kunciJawaban = null;
       if (this.jawaban0.checked) {
@@ -55,20 +55,18 @@ class EventListener {
         state.attackListener = true;
       }
       if (state.attackListener) {
-          if (userAnswering !== jawabans) {
-            state.bossAttack = true;
-            state.warriorAttack = false;
-            
-            // console.log("boss attack");
-          } else {
-            state.warriorAttack = true;
-            state.bossAttack = false;
-            // console.log("warrior attack");
+        if (userAnswering !== jawabans) {
+          state.bossAttack = true;
+          state.warriorAttack = false;
 
-          }
+          // console.log("boss attack");
+        } else {
+          state.warriorAttack = true;
+          state.bossAttack = false;
+          // console.log("warrior attack");
         }
-        // console.log("harusnya sudah nyerang ga sih :(");
-      
+      }
+      // console.log("harusnya sudah nyerang ga sih :(");
     });
   }
 
@@ -180,6 +178,8 @@ class EventListener {
         keys.right.pressed = true;
         break;
       case " ":
+        jumpsfx.play();
+
         console.log(player.position.x + player.width);
         console.log("b: " + (player.position.x + player.width));
         if (!state.climbStair) {
@@ -225,6 +225,9 @@ class EventListener {
         keys.down.pressed = false;
         break;
       case " ":
+        jumpsfx.pause();
+        jumpsfx.currentTime = 0;
+
         keys.jump.pressed = false;
         break;
     }

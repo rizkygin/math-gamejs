@@ -24,6 +24,8 @@ class Boss extends Sprite {
     this.effectElement = null;
 
     this.countDown = null;
+
+    this.punchMusic = new Audio('music/punch.mp3')
   }
 
   health() {
@@ -53,6 +55,7 @@ class Boss extends Sprite {
   }
 
   shaking() {
+    this.punchMusic.play();
     const bool = Boolean(Math.floor(Math.random() >= 0.5));
     this.shakingElapsedTime++;
     switch (state.element) {

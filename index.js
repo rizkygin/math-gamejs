@@ -106,6 +106,9 @@ const door2 = new Sprite({
   frameRate: 8,
   frameBuffer: 10,
 });
+const bgm = new Audio('music/fightboss.mp3');
+const bgm1 = new Audio('music/map.mp3');
+const jumpsfx = new Audio("music/jumpreal.mp3");
 
 const button = new Button();
 button.top();
@@ -149,6 +152,8 @@ function animate() {
   listener.listener();
 
   if (state.gameOver) {
+    bgm.pause();
+    bgm.currentTime = 0;
     gameOverMap.drawAnimate();
     console.log("hai ini harusnya jalan woy");
     if (boss.hp <= 0) {
@@ -166,6 +171,9 @@ function animate() {
     // console.log(jawabanBenar);
   } else {
     if (state.map === 4) {
+      bgm1.pause();
+      bgm1.currentTime = 0;
+      bgm.play();
       if (question.count >= 5 * state.section) {
         state.gameOver = true;
         // console.log(boss.hp)
@@ -223,6 +231,8 @@ function animate() {
         }
       }
     } else {
+      bgm1.play();
+      bgm1.volume = 0.1;
       switch (state.map) {
         case 1:
           map1.draw();
