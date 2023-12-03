@@ -176,7 +176,6 @@ function animate() {
       bgm.play();
       if (question.count >= 5 * state.section) {
         state.gameOver = true;
-        // console.log(boss.hp)
       } else {
         map4.draw();
         document.getElementById("showOptions").style.display = "block";
@@ -210,16 +209,15 @@ function animate() {
         if (state.attackListener) {
           clickOptions();
           if (state.warriorAttack) {
-            state.jawabanBenar.push(question.count);
+            state.jawabanBenar.push(question.count+1);
           }
-          console.log(question.count + "yayayayyayayay");
+          listener.checkboxReset();
+          // question.uncheckCheckbox();
           question.nextQuestion();
 
           state.attackListener = false;
-          console.log(state.jawabanBenar);
         }
         if (state.showOption) {
-          // console.log("haiii ninininin");
           const form = document.querySelector("form.pure-form");
           form.style.display = "block";
           document.getElementById("onceShow").style.display = "none";

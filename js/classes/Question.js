@@ -58,7 +58,7 @@ class Question extends Sprite {
             "Kakak dan adik bermain puzzle bersama-sama dan membuat sebuah bangun seseperti pada gambar\ndibawah ini!",
           picture: "q1",
           question2:
-            "Bangun datar apa saja yang kakak dan adik gunakan dalam membentuk bangunan tersebut? (C2)",
+            "Bangun datar apa saja yang kakak dan adik gunakan dalam membentuk bangunan tersebut? ",
           options: [
             "Segitiga , persegi , Jajar Genjang, Trapesium",
             "Persegi, Jajar Genjang, Persegi Panjang, Lingkaran",
@@ -72,9 +72,9 @@ class Question extends Sprite {
             "Indonesia memiliki beragam tradisi peringatan dalam menyambut hari raya Idul Fitri, salah satunya adalah dengan \nmembuat ketupat. Ketupat dapat dibentuk dengan beragam bentuk, contohnya di keluarga pak \nArpu yang setiap lebaran membuat ketupat dalam bentuk seperti pada gambar",
           picture: "q2",
           question2:
-            "Dari gambar tersebut, ketupat yang dibuat oleh keluarga pak Arpu berbentuk bangun datar apa saja ? (C2)",
+            "Dari gambar tersebut, ketupat yang dibuat oleh keluarga pak Arpu berbentuk bangun datar apa saja ? ",
           options: [
-            "Belah Ketupat, Segitita",
+            "Belah Ketupat, Segitiga",
             "Belah Ketupat, Persegi",
             "Belah Ketupat, Lingkaran",
             "Lingkaran",
@@ -83,15 +83,15 @@ class Question extends Sprite {
         },
         {
           question:
-            "Memiliki empat sisi dan empat titik sudut, memiliki dua pasang sisi yang sama panjang, diagonalnya berpotongan \ntegak lurus, salah satu diagonalnya membagi diagonal yang lain sama panjang. \nCiri-ciri tersebut merupakan ciri-ciri dari bangun datar… (C2)",
+            "Memiliki empat sisi dan empat titik sudut, memiliki dua pasang sisi yang sama panjang, diagonalnya berpotongan \ntegak lurus, salah satu diagonalnya membagi diagonal yang lain sama panjang. \nCiri-ciri tersebut merupakan ciri-ciri dari bangun datar… ",
           picture: null,
           question2: null,
-          options: ["Persegi", "Lingkaran", "Persegi Panjang", "Belah Ketupat"],
+          options: ["segitiga", "Lingkaran", "Persegi Panjang", "Belah Ketupat"],
           answer: 3,
         },
         {
           question:
-            "Manakah dari bangun berikut yang merupakan bangun datarlayang-layang? (C2)",
+            "Manakah dari bangun berikut yang merupakan bangun datarlayang-layang? ",
           picture: "q4",
           question2: null,
           options: ["4 dan 3", "2 dan 9", "1 dan 4", "4 dan 9"],
@@ -102,18 +102,18 @@ class Question extends Sprite {
             "Adek membuat kerajinan tangan berbentuk amplop seperti pada gambar. ",
           picture: "q5",
           question2:
-            "Dari kerajinan yang dibuat oleh adek, bangun datar apa saja yang ada pada amplop tersebut? (C2)",
+            "Dari kerajinan yang dibuat oleh adek, bangun datar apa saja yang ada pada amplop tersebut? ",
           options: [
             "Belah ketupat dan segitiga",
             "Lingkaran, dan segitiga",
             "Segitiga dan persegi panjang",
-            "Persegi Panjang, dan Segitiga",
+            "Persegi, dan Segitiga",
           ],
           answer: 2,
         },
         {
           question:
-            "Pada hari minggu akan diadakan lomba sepak bola di desa. Lapangan yang digunakan untuk lomba memiliki keliling \nsebesar 34 m dengan panjang 9 m, tentukan lebar dari lapangan tersebut? (C4)",
+            "Pada hari minggu akan diadakan lomba sepak bola di desa. Lapangan yang digunakan untuk lomba memiliki keliling \nsebesar 34 m dengan panjang 9 m, tentukan lebar dari lapangan tersebut? ",
           picture: null,
           question2: null,
           options: ["8m", "11m", "6m", "21m"],
@@ -121,7 +121,7 @@ class Question extends Sprite {
         },
         {
           question:
-            "Kakak bermain bersama dengan adik dan membuat bangunan rumah. Pada bagian atap, jika diketahui kelilingnya \nsebesar 81 cm, maka sisi pada atap tersebut adalah… (C4)",
+            "Kakak bermain bersama dengan adik dan membuat bangunan rumah. Pada bagian atap, jika diketahui kelilingnya \nsebesar 81 cm, maka sisi pada atap tersebut adalah… ",
           picture: null,
           question2: null,
           options: ["24cm", "27cm", "18cm", "81cm"],
@@ -129,7 +129,7 @@ class Question extends Sprite {
         },
         {
           question:
-            "Jika diketahui panjang pada sebuah belahketupat 12 cm, maka keliling belah ketupat adalah… (C3)",
+            "Jika diketahui panjang pada sebuah belahketupat 12 cm, maka keliling belah ketupat adalah… ",
           picture: null,
           question2: null,
           options: ["36cm", "124cm", "12cm", "48cm"],
@@ -137,7 +137,7 @@ class Question extends Sprite {
         },
         {
           question:
-            "Bu guru meminta Lana untuk menggambar sebuah bangun datar yang memiliki sisi sebesar 15 x 15 cm. \nJika dihitung kelilingnya, maka bangun tersebut memiliki keliling sebesar…(C4)",
+            "Bu guru meminta Lana untuk menggambar sebuah bangun datar yang memiliki sisi sebesar 15 x 15 cm. \nJika dihitung kelilingnya, maka bangun tersebut memiliki keliling sebesar…",
           picture: null,
           question2: null,
           options: ["50cm", "60cm", "30cm", "75cm"],
@@ -147,8 +147,8 @@ class Question extends Sprite {
           question: "",
           picture: "q10",
           question2:
-            "Jika keliling dari bangun tersebut 70 cm, maka sisi BC dari bangun tersebut memiliki panjang… (C3)",
-          options: ["21cm", "44cm", "23cm", "76cm"],
+            "Jika keliling dari bangun tersebut 70 cm, maka sisi BC dari bangun tersebut memiliki panjang… ",
+          options: ["21cm", "44cm", "23cm", "26cm"],
           answer: 3,
         },
         {
@@ -156,13 +156,13 @@ class Question extends Sprite {
             "Penjahit Rumi memiliki pesanan untuk membuat bendera seperti pada gambar berikut! ",
           picture: "q11",
           question2:
-            "Dilihat dari bangun tersebut, berapakah luas yang dimiliki bendera tersebut? (C4) ",
+            "Dilihat dari bangun tersebut, berapakah luas yang dimiliki bendera tersebut?  ",
           options: ["150cm", "140cm", "200cm", "150cm"],
           answer: 0,
         },
         {
           question:
-            "Siska berangkat sekolah bersama teman-temannya. Sebelum berangkat sekolah, ibu memberi siska uang saku. \nUang tersebut memiliki sisi 6 x 15 cm. \nJika dihitung luas uang tersebut, berapakah luas uang yang dimiliki oleh siska? (C5)",
+            "Siska berangkat sekolah bersama teman-temannya. Sebelum berangkat sekolah, ibu memberi siska uang saku. \nUang tersebut memiliki sisi 6 x 15 cm. \nJika dihitung luas uang tersebut, berapakah luas uang yang dimiliki oleh siska? ",
           picture: null,
           question2: null,
           options: ["90cm", "80cm", "75cm", "100cm"],
@@ -170,7 +170,7 @@ class Question extends Sprite {
         },
         {
           question:
-            "Ifan membeli kertas kado yang memiliki sisi sebesar 12 cm. berapakah luas kertas kado milik ifan? (C4)",
+            "Ifan membeli kertas kado yang memiliki sisi sebesar 12 cm. berapakah luas kertas kado milik ifan? ",
           picture: null,
           question2: null,
           options: ["12cm", "90cm", "144cm", "100cm"],
@@ -178,7 +178,7 @@ class Question extends Sprite {
         },
         {
           question:
-            "Dika bersama teman-temannya akan membuat sebuah layangan. Layangan tersebut memiliki panjang 14 x 8 cm. \nhitunglah luas dari layang-layang yang dibuat oleh Dika dan teman-temannya! (C4)",
+            "Dika bersama teman-temannya akan membuat sebuah layangan. Layangan tersebut memiliki panjang 14 x 8 cm. \nhitunglah luas dari layang-layang yang dibuat oleh Dika dan teman-temannya! ",
           picture: null,
           question2: null,
           options: ["102", "148", "144", "56"],
@@ -188,7 +188,7 @@ class Question extends Sprite {
           question: "",
           picture: "q15",
           question2:
-            "Jika diketahui luas pada bangun tersebut 84 cm, maka alas bangun tersebut adalah… (C5)",
+            "Jika diketahui luas pada bangun tersebut 84 cm, maka alas bangun tersebut adalah… ",
           options: ["84cm", "14cm", "14cm", "66cm"],
           answer: 2,
         },

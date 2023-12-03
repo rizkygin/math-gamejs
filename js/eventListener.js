@@ -161,6 +161,24 @@ class EventListener {
       this.firstTime = false;
     }
   }
+  checkboxReset(){
+    this.jawaban0 = document.getElementById("answer0");
+    this.jawaban1 = document.getElementById("answer1");
+    this.jawaban2 = document.getElementById("answer2");
+    this.jawaban3 = document.getElementById("answer3");
+    if(this.jawaban0.checked){
+      this.jawaban0.checked = false;
+    }
+    if(this.jawaban1.checked){
+      this.jawaban1.checked = false;
+    }
+    if(this.jawaban2.checked){
+      this.jawaban2.checked = false;
+    }
+    if(this.jawaban3.checked){
+      this.jawaban3.checked = false;
+    }
+  }
   onKeydown(event) {
     event.preventDefault();
 
