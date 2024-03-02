@@ -297,10 +297,10 @@ class Sprite {
       state.gameOver = true;
     }
   }
-  winStatement(win) {
+  winStatement(win,message,x) {
     if (state.gameOver) {
-      if (win) {
-        c.fillStyle = "red";
+      if (win === true) {
+        c.fillStyle = "green";
         c.font = "20px Arial";
         c.fillText("KAMU MENANG", 440, 300);
       } else {
@@ -308,19 +308,23 @@ class Sprite {
         c.font = "20px Arial";
         c.fillText("KAMU KALAH", 446, 300);
       }
-      c.fillStyle = "red";
-      c.font = "20px Arial";
-      c.fillText("Nomor Jawaban Benar", 412, 330);
-      c.fillStyle = "green";
-      c.font = "20px Arial";
-      c.fillText("[",436 , 360 );
+      //old version ditampilkan ke layar
+      // c.fillStyle = "red";
+      // c.font = "20px Arial";
+      // c.fillText("Nomor Jawaban Benar", 412, 330);
+      // c.fillStyle = "green";
+      // c.font = "20px Arial";
+      // c.fillText("[",436 , 360 );
       
-      state.jawabanBenar.forEach((e,i) => {
-        const x = i*20;
-        c.fillText(e,(446 + x) , 360 );
-      });
-      c.fillText("]",(446 + state.jawabanBenar.length * 20) , 360 );
+      // state.jawabanBenar.forEach((e,i) => {
+      //   const x = i*20;
+      //   c.fillText(e,(446 + x) , 360 );
+      // });
+      // c.fillText("]",(446 + state.jawabanBenar.length * 20) , 360 );
 
+      //new Version 
+      c.font = "20px Arial";
+      c.fillText(message, x, 330);
     }
 
     const nickname = document.getElementById("nickname");
@@ -401,4 +405,13 @@ const gameOverMap = new Sprite({
   imageSrc: "./images/map/gameover.png",
   frameRate: 11,
   frameBuffer: 4,
+});
+const bubbleChat = new Sprite({
+  position:{
+    x:100,
+    y:150
+  },
+  imageSrc :"./images/questionspic/bubble_chat_boss1.png",
+  frameRate: 5,
+  frameBuffer: 5,
 });

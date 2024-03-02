@@ -24,34 +24,85 @@
       <script>
         var show = false;
       </script>
-      <img id ="showOptions" onclick="clickOptions()" style="position: absolute; bottom: 85px; left: 990px; width: 30px; cursor: pointer; display: none;" src="./images/questionspic/1x/openButton.png" />
-      <img id ="onceShow" style="position: absolute; bottom: 10px; left: 930px; width: 70px; display: none;" src="./images/questionspic/1x/lihatjawaban.png" />
+      <img
+        id="showOptions"
+        onclick="clickOptions()"
+        style="
+          position: absolute;
+          bottom: 85px;
+          left: 990px;
+          width: 30px;
+          cursor: pointer;
+          display: none;
+        "
+        src="./images/questionspic/1x/openButton.png"
+      />
+      <img
+        id="onceShow"
+        style="
+          position: absolute;
+          bottom: 10px;
+          left: 930px;
+          width: 70px;
+          display: none;
+        "
+        src="./images/questionspic/1x/lihatjawaban.png"
+      />
 
       <div
-        style="position: absolute; left: 50px; bottom: 50px; display: none"
+        style="position: absolute; left: 10px; bottom: 50px; display: none"
         id="map4"
       >
-        <form class="pure-form" style="display: none;">
+        <button
+          id="sawQuestion"
+          style="
+            width: 900px;
+            float: right;
+            height: 37px;
+            position: relative;
+            top: 40px;
+          "
+          onclick="jumptoQuestion()"
+        >
+          Soal
+        </button>
+        <form class="pure-form" style="display: none; width: 980px;">
           <div
             id="jawabanganda"
-            style="display: flex; color: black; gap: 10px"
+            style="display: flex; color: black; gap: 10px; width: 100%"
           >
-            <div>
+            <div style="width: 40%">
               <input type="radio" name="jawaban" value="0" id="answer0" />
-              <label id="option0" style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
-              <br>
+              <label
+                id="option0"
+                style="font-family: Arial, Helvetica, sans-serif"
+                >???</label
+              ><br />
+              <br />
               <input type="radio" name="jawaban" value="1" id="answer1" />
-              <label id="option1" style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
+              <label
+                id="option1"
+                style="font-family: Arial, Helvetica, sans-serif"
+                >???</label
+              ><br />
             </div>
-            <div>
+            <div style="width: 50%">
               <input type="radio" name="jawaban" value="2" id="answer2" />
-              <label id="option2"style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
-              <br>
+              <label
+                id="option2"
+                style="font-family: Arial, Helvetica, sans-serif"
+                >???</label
+              ><br />
+              <br />
               <input type="radio" name="jawaban" value="3" id="answer3" />
-              <label id="option3"style="font-family: Arial, Helvetica, sans-serif;">???</label><br />
+              <label
+                id="option3"
+                style="font-family: Arial, Helvetica, sans-serif"
+                >???</label
+              ><br />
             </div>
           </div>
-          <button id="answerButton" style="width: 100%; float: right; margin-top: 20px;" type="submit">
+          <button id="answerButton" style="margin-top: 20px; width: 90%;" type="submit">
             JAWAB
           </button>
         </form>
@@ -62,8 +113,36 @@
         style="position: absolute; left: 450px; bottom: 220px; display: none"
         id="nickname"
       >
-        <!-- <input type="text" id="nicknameInput" name="nickname" />
-        <button id="nicknameButton">KIRIM</button> -->
+        <div
+          style="position: absolute; top: 50px; width: 100%"
+        >
+          <label
+            for="nicknameButton"
+            style="
+              width: 100%;
+              font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+                sans-serif;
+              font-weight: bold;
+              color: aliceblue;
+            "
+            >NamaKamu</label
+          >
+          <input type="text" id="nicknameInput" name="name" />
+          <button
+            id="nicknameButton"
+            onclick="sendNickname()"
+            style="
+              margin-left: 22px;
+              margin-top: 20px;
+              width: 100px;
+              height: 50px;
+              border-radius: 10px;
+            "
+          >
+            KIRIM
+          </button>
+        </div>
+
         <br />
       </div>
     </div>
@@ -89,7 +168,7 @@
         <div id="enter"><img src="./images/button/enter.png" /></div>
       </div>
     </div>
-    
+
     <script src="./js/buttons/buttons.js"></script>
     <script src="./js/classes/Sprite.js"></script>
     <script src="./js/classes/Player.js"></script>

@@ -19,10 +19,12 @@ const tinggi = Math.floor(Math.random() * 30) + 1;
 const luas = Math.random() >= 0.5;
 const figure = Math.floor(Math.random() * 7);
 
+const url = "https://kyancorp.com/api/make?name=";
+
 const state = {
-  map: 1,
+  map: 4,
   hp: 100,
-  section: 3,
+  section: 1,
   element: null,
   bossElement: null,
   climbStair: false,
@@ -50,10 +52,13 @@ const state = {
   attackListener: false,
 
   jawabanBenar: [],
+  rekapJawaban: "",
+  desc: true,
 };
 function clickOptions() {
-  state.showOption = !state.showOption;
-  // console.log("show option clicked")
+  if (!state.desc) {
+    state.showOption = !state.showOption;
+  }
 }
 function chooseBoosElement() {
   const random = Math.floor(Math.random() * 3);
@@ -106,8 +111,8 @@ const door2 = new Sprite({
   frameRate: 8,
   frameBuffer: 10,
 });
-const bgm = new Audio('music/fightboss.mp3');
-const bgm1 = new Audio('music/map.mp3');
+const bgm = new Audio("music/fightboss.mp3");
+const bgm1 = new Audio("music/map.mp3");
 const jumpsfx = new Audio("music/jumpreal.mp3");
 
 const button = new Button();
@@ -146,6 +151,7 @@ const question = new Question({
   frameRate: 1,
   frameBuffer: 0,
 });
+
 const listener = new EventListener();
 function animate() {
   window.requestAnimationFrame(animate);
@@ -155,31 +161,28 @@ function animate() {
     bgm.pause();
     bgm.currentTime = 0;
     gameOverMap.drawAnimate();
-    console.log("hai ini harusnya jalan woy");
     if (boss.hp <= 0) {
-      boss.winStatement(true);
+      boss.winStatement(true, "Karena Menghabiskan darah Boss", 362);
+    } else if (boss.hp > state.hp) {
+      boss.winStatement(false, "Karena darah boss lebih banyak dari mu", 338);
+    } else if (state.hp > boss.hp) {
+      boss.winStatement(true, "Karena darahmu lebih banyak dari boss", 345);
+    } else if (state.hp === boss.hp) {
+      boss.winStatement(true, "Kehebatannmu diatas rata rata", 380);
     }
-    if (boss.hp > state.hp) {
-      boss.winStatement(false);
-    }
-    if (state.hp > boss.hp) {
-      boss.winStatement(true);
-    }
-    if (state.hp === boss.hp) {
-      boss.winStatement(true);
-    }
-    // console.log(jawabanBenar);
   } else {
     if (state.map === 4) {
       bgm1.pause();
+      // console.log(question.count);
       bgm1.currentTime = 0;
       bgm.play();
-      if (question.count >= 5 * state.section) {
+      if (
+        (question.count >= 13 * state.section && state.section === 1) ||
+        (question.count >= 13 && question.count >= 41)
+      ) {
         state.gameOver = true;
       } else {
         map4.draw();
-        document.getElementById("showOptions").style.display = "block";
-        document.getElementById("showOptions").style.display = "block";
         if (state.map4Draw) {
           switch (state.element) {
             case "fire":
@@ -203,29 +206,44 @@ function animate() {
         boss.draw();
 
         map4.attackListener();
-
         question.drawQuestion();
         // console.log(listener.userAnswer);
+
         if (state.attackListener) {
           clickOptions();
+          let push = "";
           if (state.warriorAttack) {
-            state.jawabanBenar.push(question.count+1);
+            state.jawabanBenar.push(question.count + 1);
+            push = "&s" + (question.count + 1) + "=1";
+            state.rekapJawaban += push;
+          } else {
+            push = "&s" + (question.count + 1) + "=0";
+            state.rekapJawaban += push;
           }
+          console.log(state.rekapJawaban);
+
           listener.checkboxReset();
           // question.uncheckCheckbox();
           question.nextQuestion();
 
           state.attackListener = false;
         }
-        if (state.showOption) {
-          const form = document.querySelector("form.pure-form");
-          form.style.display = "block";
-          document.getElementById("onceShow").style.display = "none";
-          c.fillStyle = "white";
-          c.fillRect(0, canvas.height - 200, canvas.width, 200);
+        if (question.count > 0) {
+          document.getElementById("showOptions").style.display = "block";
+          if (state.showOption) {
+            const form = document.querySelector("form.pure-form");
+            form.style.display = "block";
+            document.getElementById("onceShow").style.display = "none";
+            c.fillStyle = "white";
+            c.fillRect(0, canvas.height - 200, canvas.width, 200);
+
+            document.getElementById("sawQuestion").style.display = "none";
+          } else {
+            const form = document.querySelector("form.pure-form");
+            form.style.display = "none";
+          }
         } else {
-          const form = document.querySelector("form.pure-form");
-          form.style.display = "none";
+          document.getElementById("showOptions").style.display = "none";
         }
       }
     } else {
@@ -257,6 +275,27 @@ function animate() {
       player.update();
     }
   }
+}
+function jumptoQuestion() {
+  state.rekapJawaban += "&s" + (question.count + 1) + "=1";
+  question.count += 1;
+}
+function sendNickname() {
+  const nickname = document.getElementById("nicknameInput").value;
+  // alert(nickname);
+  let actionS = url + nickname + state.rekapJawaban;
+  if(state.section === 1){
+    actionS += "&db1=" + boss.hp;
+    actionS += "&dw1=" + state.hp;
+    actionS += "&section=" + 1;
+  }else{
+    actionS += "&db2=" + boss.hp;
+    actionS += "&dw2=" + state.hp;
+    actionS += "&section=" + 2;
+
+  }
+  // alert(actionS);
+  window.open(actionS, "_self");
 }
 
 animate();
