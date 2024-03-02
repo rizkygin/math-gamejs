@@ -24,7 +24,7 @@ const url = "https://kyancorp.com/api/make?name=";
 const state = {
   map: 1,
   hp: 100,
-  section: 1,
+  section: 2,
   element: null,
   bossElement: null,
   climbStair: false,
