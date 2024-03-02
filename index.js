@@ -22,7 +22,7 @@ const figure = Math.floor(Math.random() * 7);
 const url = "https://kyancorp.com/api/make?name=";
 
 const state = {
-  map: 4,
+  map: 1,
   hp: 100,
   section: 1,
   element: null,
