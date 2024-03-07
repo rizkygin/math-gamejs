@@ -57,6 +57,7 @@ class Question extends Sprite {
     this.jsonQuestion = {
       questions: [
         {
+          //cari menggunakan BossAsk: false, untuk mencari semua description
           //1
           question:
             "Kakak dan adik bermain puzzle bersama-sama dan membuat sebuah bangun seseperti pada gambar\ndibawah ini!",
@@ -66,7 +67,7 @@ class Question extends Sprite {
             "Segitiga , persegi , Jajar Genjang, Trapesium",
             "Persegi, Jajar Genjang, Persegi Panjang, Lingkaran",
             "Belah Ketupat, Persegi Panjang, Lingkaran, Jajar Genjang",
-            "Pesegi, Segitiga, Belah ketupat, Trapesium",
+            "Persegi, Segitiga, Belah ketupat, Trapesium",
           ],
           answer: 0,
           bossAsk: false,
@@ -80,7 +81,7 @@ class Question extends Sprite {
             "Segitiga , persegi , Jajar Genjang, Trapesium",
             "Persegi, Jajar Genjang, Persegi Panjang, Lingkaran",
             "Belah Ketupat, Persegi Panjang, Lingkaran, Jajar Genjang",
-            "Pesegi, Segitiga, Belah ketupat, Trapesium",
+            "Persegi, Segitiga, Belah ketupat, Trapesium",
           ],
           answer: 0,
           bossAsk: true,
@@ -132,7 +133,7 @@ class Question extends Sprite {
           picture: null,
           question2: null,
           options: [
-            "segitiga",
+            "Segitiga",
             "Lingkaran",
             "Persegi Panjang",
             "Belah Ketupat",
@@ -180,7 +181,7 @@ class Question extends Sprite {
         {
           //10
           question:
-            "Manakah dari bangun berikut yang merupakan bangun datar layang-layang?",
+            "Manakah dari bangun berikut yang merupakan \nbangun datar layang-layang?",
           picture: null,
           question2: "",
           options: ["4 dan 3", "2 dan 9", "1 dan 4", "4 dan 9"],
@@ -203,9 +204,9 @@ class Question extends Sprite {
           picture: null,
           question2: null,
           options: [
-            "Belah ketupat dan segitiga",
-            "Lingkaran, dan segitiga",
-            "Segitiga dan persegi panjang",
+            "Belah Ketupat dan segitiga",
+            "Lingkaran, dan Segitiga",
+            "Segitiga dan Persegi Panjang",
             "Persegi, dan Segitiga",
           ],
           answer: 2,
@@ -423,7 +424,7 @@ class Question extends Sprite {
         {
           //31
           question:
-            "Bu guru meminta Lana untuk menggambar sebuah bangun datar yang memiliki sisi sebesar \n15 x 15 cm. Besar keliling bangun tersebut",
+            "Bu guru meminta Lana untuk menggambar sebuah bangun datar yang memiliki \nsisi sebesar 15 x 15 cm. Besar keliling bangun tersebut",
           question2: "",
           picture: null,
           options: ["36cm", "124cm", "12cm", "48cm"],
